@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const readline = require('readline');
 const path = require('path');
@@ -15,8 +14,9 @@ var ws = wb.addWorksheet('FileList');
 
 // Scopes
 const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
-const TOKEN = 'EnviModeling-Token.json';
 const CREDENTIAL = 'EnviModeling-Credential.json';
+const TOKEN_FILE = 'EnviModeling-Token.json';
+const TOKEN_PATH = path.join(__dirname, TOKEN_FILE);
 
 // Load credentials and authorize
 fs.readFile(CREDENTIAL, (err, content) => {
@@ -28,7 +28,7 @@ function authorize(credentials, callback) {
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2 = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
 
-    fs.readFile(TOKEN, (err, token) => {
+    fs.readFile(TOKEN_FILE, (err, token) => {
         if (err) return getNewToken(oAuth2, callback);
         oAuth2.setCredentials(JSON.parse(token));
         callback(oAuth2);
