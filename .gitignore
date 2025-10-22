@@ -1,5 +1,8 @@
 # Credentials
-*-Token.json
+# ไฟล์ลับ (ห้ามอัปโหลด!)
+token.json
+DCCE-CarbonPool-Credential.json
+.DS_Store
 
 # Logs
 logs
@@ -110,3 +113,5 @@ dist
 Temp/
 #Exclude old data attachment files
 Data/
+
+
